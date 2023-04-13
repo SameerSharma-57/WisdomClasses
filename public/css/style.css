@@ -1,0 +1,544 @@
+/*..............  NAVBAR START .........*/
+body {
+  background-color: rgb(255, 255, 255);
+  color: #514B64;
+  min-height: 100vh;
+}
+
+code {
+  background: #ffffff;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  margin: 0 0.3rem;
+  /* font-family: sans-serif; */
+}
+
+/* #downloads-btn{
+  color: #e74c3c;
+} */
+
+.navbar {
+  background-color: rgb(66 58 164);;
+  position: sticky;
+}
+
+.navbar-nav .nav-link {
+  padding-right: 0px;
+  padding-left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.navbar-brand{
+  font-size: 2.0rem!important;
+  font-family: sans-serif;   
+}
+
+.mr-2, .mx-2 {
+  margin-right: .9rem!important;
+}
+
+.pb-3, .py-3 {
+  padding-bottom: 0.5rem!important;
+}
+.pt-3, .py-3 {
+  padding-top: 0.5rem!important;
+}
+
+/*..............  NAVBAR END HERE  .........*/
+
+
+
+
+/*..............  home .........*/
+
+/* #homefoodimage {
+  background-image: url('images/1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+} */
+
+#home-txt{
+  padding: 10px;
+  /* width:1000px; */
+  /*margin-left: 10px;*/
+  margin-left: 15px;
+  margin-right: 15px;
+}
+#a{
+  border: 5px #4130bf;
+}
+/* .anwar_sir_pic{
+  width: 450px;
+} */
+
+/* #anwar_sir_pic{
+  align-content: right;
+  position: relative;
+} */
+
+h1 {
+  /* width: 700px; */
+  text-align: center;
+  color: #4130bf;
+  font-size: 2rem;
+  padding: 2rem 0rem;
+}
+p{
+  color: #e74c3c;
+  text-align: justify;
+  
+}
+
+#points {
+  color: #f1c40f;
+}
+#cdn {
+  color: white;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 50px;
+}
+.btn:hover {
+  background: rgb(76, 194, 72);
+  color: white;
+  /* border: 2px solid white; */
+  border-radius: 50px;
+} 
+#a {
+  background-color: white;
+}
+
+.top-banner {
+  width: 100%;
+  background: url('images/a.jpg') no-repeat center ;
+  background-size: cover;
+  padding: 3.875rem 0 1.375rem;
+}
+#home{
+  height: 500px;
+  background-color: #d7ebfe;
+}
+
+/*..............  home END HERE  .........*/
+
+
+
+/*..............  COUNTER  .........*/
+
+/* .counter-section {
+  background-color: #e74c3c;
+  padding: 2.5rem 0;
+}
+.counter-section p {
+  color: white;
+  text-transform: uppercase;
+} */
+
+
+/*..............  COUNTER END HERE  .........*/
+
+/*..............  about  .........*/
+
+.about p {
+  font-size: 15px ;
+}
+
+#about { 
+  padding: 50px 0px;
+
+}
+/* #img {
+  padding-top: 40px;
+}
+#img2 {
+  padding-top: 10px;
+} */
+#about-i{
+  /* width:1000px; */
+  /* border-image: 5px; */
+  box-sizing: border-box;
+  /* margin-bottom: 70px; */
+  margin: 10px 20px;
+  margin-bottom: 40px;
+  /* margin-top: none; */
+}
+#about2-images{
+  background-color: #ffffff!important;
+}
+
+#about2-img1{
+  width:215%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  height: 100%;
+}
+/*..............  about END HERE  .........*/
+
+
+
+
+
+  <!-- /*..............  about 3  .........*/ -->
+
+/* #about3-backgorund{
+   background-image: url('R.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+}    */
+.about3 h1 {
+    font-size: 26px;
+    color: black; 
+    text-shadow: 5px 5px 5px white;
+}
+.about3 p {
+  font-size: 20px;
+  color: rgb(120, 13, 13); 
+  text-shadow: 10px 10px 5px black;
+}
+
+
+  <!-- /*..............  about3 END HERE  .........*/ -->
+
+
+  /*<!-- ..............  explore food......... -->*/
+
+
+
+  #food {
+    padding-top: 30px;
+  }
+.card{
+  height: 500px;
+}
+
+
+    <!-- /*..............  explore food END HERE  .........*/ -->
+
+
+
+
+ <!-- /*.............. testimonial   .........*/ -->
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  background: #f1f1f1f1;
+}
+
+/* Slides */
+.mySlides {
+  display: none;
+  padding: 80px;
+  text-align: center;
+}
+
+.slideshow-img{
+  width:55%;
+  height: 350px;
+}
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+/* The dot/bullet/indicator container */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+    background: #ddd;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the active dot/circle */
+.active, .dot:hover {
+  background-color: #717171;
+  border-radius: 10px;
+}
+
+/* Add an italic font style to all quotes */
+q {font-style: italic;}
+
+/* Add a blue color to the author */
+.author {color: cornflowerblue;}
+
+
+#tst {
+  font-size: 40px;
+  color: #e67e22;
+}
+
+
+
+
+
+ /*<!-- ..............  testimonial  END HERE  ......... -->*/
+
+
+
+ /*<!-- ..............  faq  ......... -->*/
+
+.faq p {
+  color: black;
+}
+
+
+ /*<!-- ..............  faq  END HERE  ......... -->*/
+
+
+
+
+  /*<!-- ..............  subs ......... -->*/
+
+  #Subscribe {
+    padding-top: 50px;
+  }
+  .subs h1 {
+    font-size: 32px;
+  }
+
+
+  .subs p {
+    font-size: 12px;
+  }
+  .subs input {
+    font-size: 20px;
+    margin-top: 20px;
+    padding-left: 30px;
+  }
+  .subs button {
+    margin-bottom: 7px;
+  }
+
+
+   /*<!-- ..............  subs  ......... -->*/
+
+/*<!-- ..............footer......... -->*/
+
+.ftr {
+  background-color: rgb(62, 198, 222);
+}
+.ftr p {
+  margin-left: 0px;
+}
+.ftr1 {
+  margin: px 0px;
+}
+.icon i {
+  font-size: 30px;
+  margin: 25px;
+}
+.icon {
+  background-color: rgb(62, 198, 222) ;
+}
+#footer {
+  padding-top: 50px;
+}
+.ftr1 {
+  margin-top: 50px;
+}
+
+
+
+/*<!-- .............. footer END HERE u ......... -->*/
+
+
+
+
+
+/* form css starts here */
+
+
+
+.hero{
+  height: 100%;
+  width: 100%;
+  /* background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("images/wisdom.logo,.jpeg"); */
+  /*background-repeat: inherit;*/
+  background-repeat: no-repeat;
+  background-color: #d7ebfe;
+  /*backface-visibility:inherit;*/
+  background-position: center;
+  background-size:cover;
+  position: absolute;
+}
+
+.form-box{
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 1% auto;
+  background: #fff;
+  border-radius: 25px;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.button-box-form{
+  width: 280px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 30px 10px #5c53ff47;
+  border-radius: 30px;
+}
+
+.toggle-btn-form{
+  /*color: #fff*/
+  font-weight: bold;
+  padding: 10px 35px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+#btn-form:enabled{
+  border: none;
+}
+
+
+button.toggle-btn-form {
+  outline: none;
+}
+
+
+#btn-form{
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 140px;
+  height: 100%;
+  background: linear-gradient(to right ,#f43514 ,#ffad06);
+  border-radius: 30px;
+  transition: .5s;
+  /* outline: none; */
+}
+
+.social-icons{
+  margin: 30px auto;
+  text-align: center;
+}
+.social-icons img{
+  width: 30px;
+  margin: 0 12px;
+  box-shadow: 0 0 20px 0#7f7f7f3d;
+  cursor: pointer ;
+  border-radius: 30%;
+}
+
+.input-group{
+  top: 180px;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+
+}
+
+.input-field{
+  width: 100%;
+  padding: 5px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+.submit-btn{
+  width: 65%;
+  padding: 10px 30px;
+  margin-left: 15%;
+  cursor: pointer;
+  display: block;
+  /* margin: auto; */
+  margin-top: 30px;
+  background: linear-gradient(to right ,#f43514 ,#ffad06);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  font-weight: bold;
+
+}
+
+.check-box-form{
+  margin: 30px 10px 30px 0;
+}
+.span-form{
+  color: #777;
+  font-size: 15px;
+  margin-top: 10px;
+  bottom: 75px;
+  position: absolute;
+}
+#login{
+  left: 50px;
+}
+
+
+#register{
+  left: 450px;
+}
+
+#popup{
+  position: relative;
+  text-align: center;
+  color: #f81700
+}
+/* 
+button:focus {
+  /* outline: 1px dotted; */
+  /* outline: 5px auto -webkit-focus-ring-color; */
+/* } */ 
+
+
+
+
+/* css for Question upload page  */
+
+#quesup{
+  left: 15%;
+  top: 20%;
+}

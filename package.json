@@ -1,0 +1,29 @@
+{
+  "name": "temp2",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "marked": "^4.3.0",
+    "method-override": "^3.0.0",
+    "modify": "^0.1.2",
+    "mongodb": "^5.2.0",
+    "mongoose": "^7.0.3",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}

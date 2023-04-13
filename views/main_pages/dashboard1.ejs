@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Wisdom Classes - Login and register </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="cssfiles/style.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
+    <link rel="shortcut icon" href="images/wisdom.logo.jpeg" type="image/png">
+
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Wisdom Classes </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
+	<link rel="stylesheet" href="images/slider/css/swiper-bundle.min.css">
+    <link rel = "stylesheet" href = "images/slider/css/slider_style.css">
+	    <link rel="shortcut icon" href="images/wisdom.logo.jpeg" type="image/png">
+
+
+    <title>{{name}}</title>
+</head>
+
+<script type="text/javascript">
+
+	document.addEventListener("DOMContentLoaded", () => {
+
+		function counter(id, start, end, duration) {
+			let obg = document.getElementByid(id),
+				current = start,
+				range = end - start,
+				increment = end > start ? 1 : -1,
+				step = math.abs(math.floor(duration / range)),
+				timer = setinterval(() => {
+					current += increment;
+					obj.textContent = current;
+					if (current == end) {
+						clearinterval(timer);
+					}
+				}, step);
+		}
+
+		counter("count1", 0, 1287, 3000);
+		counter("count2", 100, 5786, 2500);
+		counter("count3", 0, 1440, 3000);
+		counter("count4", 0, 7110, 3000);
+
+
+	});
+</script>
+
+<body>
+    <!-- {{!-- {{name}} --}} -->
+    <section id="navbar">
+		<nav class="navbar navbar-expand-lg py-3 navbar-dark  shadow-sm">
+			<div class="container">
+				<a href="#" class="navbar-brand">
+					<img src="images/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
+					<!-- Logo Text -->
+					<span class="text-uppercase font-weight-bold">WISDOM CLASSES</span>
+				</a>
+
+				<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+					class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+				<div id="navbarSupportedContent" class="collapse navbar-collapse">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a href ="/ind" class="nav-link">Home <span
+									class="sr-only">(current)</span></a></li>
+						<!-- {{!-- <li class="nav-item active"><a href="#" class="nav-link">Login/Register</a></li> --}} -->
+						<li class="nav-item"><a href="/download" id="downloads-btn" class="nav-link">Downloads</a></li>
+						<li class="nav-item"><a href="#" id="contact-us-btn" class="nav-link">Contact us</a></li>
+						<li class="nav-item active" ><a href="#" id="faq-btn" class="nav-link"><%=name  %></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</section>
+
+
+
+    <section class="body-results">
+		<div class = "slide-container-results swiper">
+			<div class="slider-head">
+				<hr>
+				AVAILABLE QUIZZEZ
+				<hr>
+			</div>
+			<div class="slide-content-results">
+				<div class="card-wrapper-results swiper-wrapper">
+
+
+					<!-- <div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_tarun1.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">Lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div>
+	
+					<div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_class_pic1.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">Lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div>
+	
+					<div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_class_pic2.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div>
+	
+					<div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_tarun1.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div>
+	
+					<div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_class_pic3.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div>
+	
+					<div class="card-results swiper-slide">
+						<div class="image-content-results">
+							<span class="overlay-results"></span>
+	
+							<div class="card-image-results">
+								<img src="images/wisdom_result2.jpeg" alt="" class="card-img-results">
+							</div>
+						</div>
+						<div class="card-content-results">
+							<h2 class="name-results">lorem</h2>
+							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
+							<button class = "btn-results">view more</button>
+						</div>
+					</div> -->
+					<% quizes.forEach(element => {%>
+						<div class="card-results swiper-slide">
+							<div class="image-content-results">
+								<span class="overlay-results"></span>
+		
+								<div class="card-image-results">
+									<img src="images/wisdom_result2.jpeg" alt="" class="card-img-results">
+								</div>
+							</div>
+							<div class="card-content-results">
+								<h2 class="name-results"><%=element.title  %></h2>
+								<p class="description-results"><%=element.description  %></p>
+								<!-- <button class = "btn-results"><a href="/quiz/<%=element.slug  %>/attempt_quiz/0">Attempt quiz</a></button> -->
+								<a href="/quiz/<%=element.slug  %>/attempt_quiz/0" class="btn-results">Attempt quiz</a>
+							</div>
+						</div> 
+			
+			
+					<%}); %>
+
+				</div>
+			</div>
+	
+			<div class="swiper-button-next swiper-navBtn"></div>
+			<div class="swiper-button-prev swiper-navBtn"></div>
+			<div class="swiper-pagination"></div>
+	
+		</div>
+		</section>
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<!-- swiper js -->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!-- javascrip js -->
+    <script src = "js/script.js"></script>
+</body>
+</html>

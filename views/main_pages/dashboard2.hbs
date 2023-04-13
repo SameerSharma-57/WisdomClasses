@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Wisdom Classes - Login and register </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
+    <link rel="shortcut icon" href="images/wisdom.logo.jpeg" type="image/png">
+
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Wisdom Classes </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
+	<link rel="stylesheet" href="images/slider/css/swiper-bundle.min.css">
+    <link rel = "stylesheet" href = "images/slider/css/slider_style.css">
+	    <link rel="shortcut icon" href="images/wisdom.logo.jpeg" type="image/png">
+
+
+    <title>{{name}}</title>
+</head>
+
+<script type="text/javascript">
+
+	document.addEventListener("DOMContentLoaded", () => {
+
+		function counter(id, start, end, duration) {
+			let obg = document.getElementByid(id),
+				current = start,
+				range = end - start,
+				increment = end > start ? 1 : -1,
+				step = math.abs(math.floor(duration / range)),
+				timer = setinterval(() => {
+					current += increment;
+					obj.textContent = current;
+					if (current == end) {
+						clearinterval(timer);
+					}
+				}, step);
+		}
+
+		counter("count1", 0, 1287, 3000);
+		counter("count2", 100, 5786, 2500);
+		counter("count3", 0, 1440, 3000);
+		counter("count4", 0, 7110, 3000);
+
+
+	});
+</script>
+
+<body>
+    {{!-- {{name}} --}}
+    <section id="navbar">
+		<nav class="navbar navbar-expand-lg py-3 navbar-dark  shadow-sm">
+			<div class="container">
+				<a href="#" class="navbar-brand">
+					<img src="images/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
+					<!-- Logo Text -->
+					<span class="text-uppercase font-weight-bold">WISDOM CLASSES</span>
+				</a>
+
+				<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+					class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+				<div id="navbarSupportedContent" class="collapse navbar-collapse">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a href ="/ind" class="nav-link">Home <span
+									class="sr-only">(current)</span></a></li>
+						{{!-- <li class="nav-item active"><a href="#" class="nav-link">Login/Register</a></li> --}}
+						<li class="nav-item"><a href="#" id="downloads-btn" class="nav-link">Downloads</a></li>
+						<li class="nav-item"><a href="#" id="contact-us-btn" class="nav-link">Contact us</a></li>
+						<li class="nav-item active" ><a href="#" id="faq-btn" class="nav-link">{{name}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</section>
+
+
+
+
+    <div class = "hero">
+        <div class = "form-box">
+            {{!-- <div class = "button-box-form">
+                <div id="btn-form"></div>
+                <button type="button" class = "toggle-btn-form" onclick="login()">Log In</button>
+                <button type="button" class = "toggle-btn-form" onclick="register()">Register</button>
+            </div> --}}
+            <div class = "social-icons">
+                {{!-- <img src ="images/fb.png">
+                <img src ="images/tw.png">
+                <img src ="images/gg.webp"> --}}
+                <p id="popup">{{password}}{{email}}</p>
+            </div>
+            <form  action= "/questionup" method="post" id="quesup"class = "input-group">
+                <input type="text" name="question" class = "input-field" placeholder="Question : " required>
+                <input type="text" name="op1" class = "input-field" placeholder="Option 1:" required>
+                <input type="text" name="op2" class = "input-field" placeholder="Option 2:" required>
+                <input type="text" name="op3" class = "input-field" placeholder="Option 3:" required>
+                <input type="text" name="op4" class = "input-field" placeholder="Option 4:" required>
+                <input type="text" name="ans" class = "input-field" placeholder="Answer : (op1 / op2 / op3 / op4)" required>
+                {{!-- <input type="password" name="password" class = "input-field" placeholder="Enter password" required> --}}
+                <!-- <span class = "span-form">Remember password</span> -->
+                <!-- <input type="checkbox" class ="check-box-form"> -->
+                <!-- <span class = "span-form">Remember password</span> -->
+                <button type="submit" class = "submit-btn">Save Question</button>
+            </form>
+            {{!-- <form action="/registeruser" method="post" id = "register" class = "input-group">
+                <input type="text" name="UserName" class = "input-field" placeholder="User Name" required>
+                <input type="email" name="EmailId" class = "input-field" placeholder="Email Id" required>
+                <input type="password" name="password" class = "input-field" placeholder="Create new password" required>
+                <input type="password" name="cpassword" class = "input-field" placeholder="Confirm password" required>
+                <!-- <input type="checkbox" class ="check-box-form"> -->
+                <!-- <span class = "span-form">I Agree to the terms and conditions</span> -->
+                <button type="submit" class = "submit-btn">Register</button>
+            </form> --}}
+        </div>
+    </div>
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+	<!-- swiper js -->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!-- javascrip js -->
+    <script src = "js/script.js"></script>
+</body>
+</html>

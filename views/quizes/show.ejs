@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1><%= article.title  %></h1>
+        <div class="text-muted mb-2"><%= article.createdAt.toLocaleDateString()  %></div>
+        <div class="text-muted mb-2"><%= article.createdBy %></div>
+        <a href="/" class=" btn btn-secondary p-2 rounded">home</a>
+        <a href="/" class="btn btn-info p-2 rounded">Edit</a>
+        <a href="/quiz/<%=article.slug  %>/add" class="btn btn-info p-2 rounded">Add_question</a>
+        <div><%= article.markdown  %></div>
+        <!-- <div><%=article.quizDB[0]  %></div> -->
+        <% article.quizDB.forEach(element => {%>
+            <div class="card mb-4 mt-4">
+                <div class="card-body">
+                    <div class="card-title">question: <%= element.question %></div>
+                    
+                    <div class="card-text mb-2">option1: <%= element.option1  %></div>
+                    <div class="card-text mb-2">option2: <%= element.option2  %></div>
+                    <div class="card-text mb-2">option3: <%= element.option3  %></div>
+                    <div class="card-text mb-2">option4: <%= element.option4  %></div>
+                    <div class="card-text mb-2">Correct Answer <%= element.correctAns  %></div>
+                    
+                </div>
+                
+            </div>
+
+
+
+        <%}); %>
+
+        <a href="/quiz/<%=article.slug %>/attempt_quiz/0" class="btn btn-success" >attempt quiz</a>
+
+        
+    </div>
+</body>
+</html>
