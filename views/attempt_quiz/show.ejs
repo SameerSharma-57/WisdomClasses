@@ -47,32 +47,38 @@
     <div class="main_div">
         <div class="inner_div">
             <h2 id="_question"><%= ques.question  %></h2>
+            <form action="./<%=question_no  %>" method="post">
             <ul>
                 <li>
-                    <input type="radio" name="answer" id="option1" class='answer'>
+                    <input type="radio" name="answer" value="option1" id="option1" class='answer'>
                     <label for="option1" id="text1"><%= ques.option1  %></label>
                 </li>
                 <li>
-                    <input type="radio" name="answer" id="option2" class='answer'>
+                    <input type="radio" name="answer" value="option2" id="option2" class='answer'>
                     <label for="option2" id="text2"><%=ques.option2  %></label>
                 </li>
                 <li>
-                    <input type="radio" name="answer" id="option3" class='answer'>
+                    <input type="radio" name="answer" value="option3" id="option3" class='answer'>
                     <label for="option3" id="text3"><%=ques.option3  %></label>
                 </li>
                 <li>
-                    <input type="radio" name="answer" id="option4" class='answer'>
+                    <input type="radio" name="answer" value="option4" id="option4" class='answer'>
                     <label for="option4" id="text4"><%=ques.option4  %></label>
                 </li>
 
             </ul>
-            <a href="/quiz/<%=slug  %>/attempt_quiz/<%=Number(question_no)+1 %>">
 
-
-                <button id="submit">Next</button>
-            </a>
+                
+    
+    
+                    <button id="submit">Next</button>
+                
+            </form>
             
 
+            <form action="/quiz/<%=slug  %>/<%=st_slug  %>/submit_quiz" method="post">
+                <button class="btn-success">Submit</button>
+            </form>
 
             <div class="scoreArea" id="showscore">hi</div>
         </div>

@@ -74,9 +74,9 @@
 
 				<div id="navbarSupportedContent" class="collapse navbar-collapse">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href ="/ind" class="nav-link">Home <span
+						<li class="nav-item"><a href ="/<%=result.slug  %>/home" class="nav-link">Home <span
 									class="sr-only">(current)</span></a></li>
-						<!-- {{!-- <li class="nav-item active"><a href="#" class="nav-link">Login/Register</a></li> --}} -->
+						<li class="nav-item active"><a href="/<%=result.slug  %>" class="nav-link">Dashboard</a></li>
 						<li class="nav-item"><a href="/download" id="downloads-btn" class="nav-link">Downloads</a></li>
 						<li class="nav-item"><a href="#" id="contact-us-btn" class="nav-link">Contact us</a></li>
 						<li class="nav-item active" ><a href="#" id="faq-btn" class="nav-link"><%=name  %></a></li>
@@ -201,7 +201,7 @@
 								<h2 class="name-results"><%=element.title  %></h2>
 								<p class="description-results"><%=element.description  %></p>
 								<!-- <button class = "btn-results"><a href="/quiz/<%=element.slug  %>/attempt_quiz/0">Attempt quiz</a></button> -->
-								<a href="/quiz/<%=element.slug  %>/attempt_quiz/0" class="btn-results">Attempt quiz</a>
+								<a href="/quiz/<%=element.slug  %>/<%=result.slug  %>/attempt_quiz/0" class="btn-results">Attempt quiz</a>
 							</div>
 						</div> 
 			
@@ -235,8 +235,8 @@
 		crossorigin="anonymous"></script>
 
 	<!-- swiper js -->
-    <script src="js/swiper-bundle.min.js"></script>
+    <script src="/js/swiper-bundle.min.js"></script>
     <!-- javascrip js -->
-    <script src = "js/script.js"></script>
+    <script src = "/js/script.js"></script>
 </body>
 </html>

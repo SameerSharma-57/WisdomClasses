@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
+const slugify=require('slugify')
 
 const userSchema = new schema({
     name: {
@@ -18,6 +19,17 @@ const userSchema = new schema({
     role : {
         type : String,
         required:true
+    },
+    slug: {
+        type:String,
+        required: true,
+        unique: true
+    }
+})
+
+userSchema.pre('validate',function(){
+    if(this.name){
+        this.slug=slugify(this.name,{lower:true})
     }
 })
 

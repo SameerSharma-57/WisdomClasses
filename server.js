@@ -4,8 +4,9 @@ const hbs = require('hbs')
 const app=express()
 const articleRouter=require('./routes/articles')
 const override=require('method-override')
-
+const path  = require('path')
 const quizRouter=require('./routes/quiz')
+const adminRouter=require('./routes/adminRouter')
 const homeRouter=require('./routes/homerouter')
 const teacherRouter=require('./routes/teacherRouter')
 const bodyParser = require('body-parser');
@@ -36,11 +37,14 @@ app.use('/articles',articleRouter)
 app.use('/quiz',quizRouter)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use('/' , homeRouter);   // Use the page where we want to use the router , default i m using at index 
-app.use('/', teacherRouter);
+app.use('/' , homeRouter);   
+app.use('/admin',adminRouter)
+// Use the page where we want to use the router , default i m using at index 
+// app.use('/', teacherRouter);
 
 
-app.use(express.static("public"))
+app.use(express.static('public'));
+
 // app.get('/',async (req,res)=>{
 //     // const articles=[
 //     //     {
@@ -62,4 +66,4 @@ app.use(express.static("public"))
 
 
 
-app.listen(3000)
+app.listen(3030)

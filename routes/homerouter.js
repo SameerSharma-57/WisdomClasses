@@ -2,12 +2,53 @@ const express = require('express');
 const Router = express.Router();
 const homeschema = require('../models/homeschema')
 const Quiz= require('../models/quiz')
+const Article = require('../models/article')
 
-Router.get('',(req,res) =>{
+Router.get('/ind',(req,res) =>{
     res.render('./main_pages/logreg.hbs',{title : "tarun raj singh", name: "jai ho", password: '', email: ''})
 })
-Router.get('/ind',(req,res)=>{
+Router.get('',(req,res)=>{
     res.render('./main_pages/main.hbs',{title : "tarun raj singh", name: "jai ho", password: 'jaiho jaiho', email: ''})
+})
+// Router.get('/admin',(req,res)=>{
+//     res.render('./extra_pages/Admin_DashBoard')
+// })
+Router.get('/:slug',async(req,res)=>{
+    if(req.params.slug!=''){
+        // console.log(req.params.slug)
+        
+        
+        const result=await homeschema.findOne({slug:req.params.slug})
+        if(result){
+            
+            const quizes=await Quiz.find().sort({createdAt: 'desc'})
+
+            res.render('./main_pages/dashboard1',{name:result.name , result : result,quizes:quizes})
+        }
+    }
+})
+
+Router.get('/:slug/home',(req,res)=>{
+    res.render('./main_pages/home.hbs',{slug:req.params.slug})
+})
+
+Router.get('/teacher/:slug',async(req,res)=>{
+    if(req.params.slug!=''){
+        // console.log(req.params.slug)
+        
+        
+        const result=await homeschema.findOne({slug:req.params.slug})
+        if(result){
+            const articles=await Article.find().sort({createdAt: 'desc'})
+             const quizes=await Quiz.find().sort({createdAt: 'desc'})
+
+            res.render('./extra_pages/teacher_dashboard',{articles: articles , result : result,quizes:quizes})
+        }
+    }
+})
+
+Router.get('/teacher/:slug/home',async(req,res)=>{
+    res.render('./main_pages/home_teacher.hbs',{slug:req.params.slug})
 })
 
 // Router.get('/download',(req,res)=>{
@@ -118,12 +159,22 @@ Router.post('/login',async(req,res)=>{
                 // console.log("success");
                 if(role == result.role && role == "teacher")
                     {
-                        res.redirect("/articles")
+                        res.redirect(`teacher/${result.slug}`)
                     }
+
+                
+                else if(role == result.role && role=='admin'){
+                    res.redirect(`/admin/dashboard`)
+                }
                 else if (role == result.role && role == "student")
                     {
                         
                         res.render('./main_pages/dashboard1',{name : result.name , result : result,quizes:quizes})
+                        // res.redirect("/")
+                    }
+                    else{
+                        res.render('./main_pages/logreg.hbs',{title : "", name: "", password: `You are not a ${role}`, email: ''})
+
                     }
             }
         else{

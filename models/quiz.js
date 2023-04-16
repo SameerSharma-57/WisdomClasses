@@ -11,6 +11,12 @@ const quizSchema= new mongoose.Schema({
     description: {
         type: String
     },
+    Active: {
+        type:Boolean
+    },
+    Started: {
+        type:Boolean
+    },
     markdown:{
         type: String,
         required: true
@@ -31,12 +37,18 @@ const quizSchema= new mongoose.Schema({
     quizDB:{
         type: Array
     
+    },
+    students_scores:{
+        type:Array
     }
+
 })
 
 quizSchema.pre('validate',function(){
     if(this.title){
         this.slug=slugify(this.title,{lower:true,strict:true})
+        this.Active=true
+        this.Started=false
     }
 })
 module.exports=mongoose.model('Quiz',quizSchema)
