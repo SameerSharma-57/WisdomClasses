@@ -6,7 +6,8 @@
 	<title> Wisdom Classes - Login and register </title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="cssfiles/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
+	<link rel="stylesheet" type="text/css" href="/css/css_file.css">
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
@@ -17,7 +18,7 @@
 	<title> Wisdom Classes </title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="/views/js/main.js">
@@ -27,6 +28,23 @@
 
 
     <title>{{name}}</title>
+	<script>
+		
+
+			function toggle_card(i){
+		console.log('toggle')
+		document.getElementById("popup_1_view_card").classList.toggle("active")
+		console.log('hi')
+		document.getElementById("heading_popup").innerHTML=document.getElementById("heading"+i).innerHTML
+		document.getElementById("description_popup").innerHTML=document.getElementById("description"+i).innerHTML
+		document.getElementById("markdown_popup").innerHTML=document.getElementById("markdown"+i).innerHTML
+		document.getElementById("createdBy_popup").innerHTML=document.getElementById("createdBy"+i).innerHTML
+		}
+
+	function toggle_card_close(){
+		document.getElementById("popup_1_view_card").classList.toggle("active")
+	}
+	</script>
 </head>
 
 <script type="text/javascript">
@@ -58,13 +76,11 @@
 </script>
 
 <body>
-    <!-- {{!-- {{name}} --}} -->
     <section id="navbar">
 		<nav class="navbar navbar-expand-lg py-3 navbar-dark  shadow-sm">
 			<div class="container">
 				<a href="#" class="navbar-brand">
 					<img src="images/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
-					<!-- Logo Text -->
 					<span class="text-uppercase font-weight-bold">WISDOM CLASSES</span>
 				</a>
 
@@ -77,8 +93,6 @@
 						<li class="nav-item"><a href ="/<%=result.slug  %>/home" class="nav-link">Home <span
 									class="sr-only">(current)</span></a></li>
 						<li class="nav-item active"><a href="/<%=result.slug  %>" class="nav-link">Dashboard</a></li>
-						<li class="nav-item"><a href="/download" id="downloads-btn" class="nav-link">Downloads</a></li>
-						<li class="nav-item"><a href="#" id="contact-us-btn" class="nav-link">Contact us</a></li>
 						<li class="nav-item active" ><a href="#" id="faq-btn" class="nav-link"><%=name  %></a></li>
 					</ul>
 				</div>
@@ -86,7 +100,30 @@
 		</nav>
 	</section>
 
+	<div class = "hero_teacher">
+        <div class="ann_head">Announcements</div>
+       
+        
+        <% let i=1 %>
+        <% articles.forEach(element => {%>
+            
+            <div class="announcement_cards" onclick=toggle_card(<%= i %>)>
+                <h3 id="heading<%=i  %>"> <%=element.title  %></h3>
+                <p id="description<%=i  %>"><%= element.description  %>
+                </p>
 
+                <p style="display: none;" id="markdown<%= i %>"><%=element.markdown  %></p>
+
+				<h5 id="createdBy<%=i  %>"> posted by ( <%=element.createdBy  %> )</h5>
+                <span class="count_ann"><%=i  %></span>
+				<p> on 10/10/2000</p>
+            </div>
+            <% i=i+1 %>
+
+
+        <%}); %>
+
+    </div>
 
     <section class="body-results">
 		<div class = "slide-container-results swiper">
@@ -98,109 +135,18 @@
 			<div class="slide-content-results">
 				<div class="card-wrapper-results swiper-wrapper">
 
-
-					<!-- <div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_tarun1.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">Lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div>
-	
-					<div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_class_pic1.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">Lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div>
-	
-					<div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_class_pic2.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div>
-	
-					<div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_tarun1.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div>
-	
-					<div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_class_pic3.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div>
-	
-					<div class="card-results swiper-slide">
-						<div class="image-content-results">
-							<span class="overlay-results"></span>
-	
-							<div class="card-image-results">
-								<img src="images/wisdom_result2.jpeg" alt="" class="card-img-results">
-							</div>
-						</div>
-						<div class="card-content-results">
-							<h2 class="name-results">lorem</h2>
-							<p class="description-results">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis consectetur assumenda dolores accusantium? Dolore, nesciunt iste? Facere, delectus illum alias veritatis obcaecati neque nisi a debitis placeat mollitia temporibus dolorum.</p>
-							<button class = "btn-results">view more</button>
-						</div>
-					</div> -->
 					<% quizes.forEach(element => {%>
 						<div class="card-results swiper-slide">
 							<div class="image-content-results">
 								<span class="overlay-results"></span>
 		
 								<div class="card-image-results">
-									<img src="images/wisdom_result2.jpeg" alt="" class="card-img-results">
+									<img src="images/wisdom.logo.jpeg" alt="" class="card-img-results">
 								</div>
 							</div>
 							<div class="card-content-results">
 								<h2 class="name-results"><%=element.title  %></h2>
 								<p class="description-results"><%=element.description  %></p>
-								<!-- <button class = "btn-results"><a href="/quiz/<%=element.slug  %>/attempt_quiz/0">Attempt quiz</a></button> -->
 								<a href="/quiz/<%=element.slug  %>/<%=result.slug  %>/attempt_quiz/0" class="btn-results">Attempt quiz</a>
 							</div>
 						</div> 
@@ -218,6 +164,61 @@
 		</div>
 		</section>
 
+
+
+
+
+		<section class="body-results">
+			<div class = "slide-container-results swiper">
+				<div class="slider-head">
+					<hr>
+					Archived QUIZZEZ
+					<hr>
+				</div>
+				<div class="slide-content-results">
+					<div class="card-wrapper-results swiper-wrapper">
+	
+						<% archived_quizes.forEach(element => {%>
+							<div class="card-results swiper-slide">
+								<div class="image-content-results">
+									<span class="overlay-results"></span>
+			
+									<div class="card-image-results">
+										<img src="images/wisdom.logo.jpeg" alt="" class="card-img-results">
+									</div>
+								</div>
+								<div class="card-content-results">
+									<h2 class="name-results"><%=element.title  %></h2>
+									<p class="description-results"><%=element.description  %></p>
+									<a href="/quiz/<%=element.slug  %>/<%=result.slug  %>/attempt_quiz/0" class="btn-results">Attempt quiz</a>
+								</div>
+							</div> 
+				
+				
+						<%}); %>
+	
+					</div>
+				</div>
+		
+				<div class="swiper-button-next swiper-navBtn"></div>
+				<div class="swiper-button-prev swiper-navBtn"></div>
+				<div class="swiper-pagination"></div>
+		
+			</div>
+			</section>
+			<div class="popup_view_card" id="popup_1_view_card">
+				<div class="overlay_view_card"  onclick="toggle_card_close()"></div>
+				<div class="content_view_card">
+					<div class="close_btn_view_card" onclick="toggle_card_close()">&times;</div>
+					<!-- <h1>Create New Quiz</h1> -->
+					<h1 id="heading_popup">Card Title</h1>
+					<h3 id="description_popup">Card Description</h3>
+					<p id="markdown_popup">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos tenetur nihil possimus deleniti ab inventore eaque vitae at in eum delectus optio pariatur cum, repudiandae laboriosam officia consequatur explicabo soluta impedit ipsam repellat, aliquid nobis? Consequatur rem vero consectetur.  
+					</p>
+					<h5 id="createdBy_popup"> posted by Name </h5>
+					
+				</div>
+			</div>
 
 
 

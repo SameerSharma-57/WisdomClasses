@@ -2,10 +2,15 @@ const express = require('express');
 const Router = express.Router();
 const homeschema = require('../models/homeschema')
 const Article=require('../models/article')
+const Quiz = require('../models/quiz')
 
 Router.get('/dashboard',async(req,res) =>{
     const articles=await Article.find().sort({createdAt: 'desc'})
-    res.render('./extra_pages/Admin_DashBoard',{articles:articles})
+    const quizzes=await Quiz.find({Active:true})
+    const students=await homeschema.find({role:'student'})
+    const teachers=await homeschema.find({role:'teacher'
+    })
+    res.render('./extra_pages/Admin_DashBoard',{articles:articles,no_quiz:quizzes.length,no_students:students.length,no_teachers:teachers.length})
 
 })
 Router.get('/createTeacher',(req,res)=>{
@@ -87,4 +92,9 @@ Router.post('/new_announcement',async(req,res)=>{
     }
 })
 
+
+Router.delete('/:id',async (req,res)=>{
+    await Article.findByIdAndDelete(req.params.id)
+    res.redirect('/admin/dashboard')
+})  
 module.exports = Router;

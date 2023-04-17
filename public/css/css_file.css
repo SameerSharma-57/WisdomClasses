@@ -84,6 +84,7 @@ body {
     position: relative;
     z-index: 0;
     box-shadow: 0px 3px 5px rgba(0, 0, 0,0.3);
+    cursor: pointer;
 }
 
 .announcement_cards h3{
@@ -100,6 +101,10 @@ body {
     font-weight: bold;
 }
 
+
+/* .announcement_cards p{
+
+} */
 
 .announcement_cards button{
     width: 140px;
@@ -168,7 +173,8 @@ body {
 
 }
 
-.announcement_cards:hover h3{
+.announcement_cards:hover h3,
+.announcement_cards:hover h5{
 color: #ffffff;
 }
 
@@ -176,6 +182,10 @@ color: #ffffff;
     color: #ffffff;
     }
 
+.announcement_cards:hover h5{
+    color: #fff;
+    bottom: 10px;
+}
 
 .ann_head{
     width: 100%;
@@ -346,8 +356,8 @@ color: #ffffff;
 .quiz_cards_1{
     /* width: 300px;
     height: 400px; */
-    width: 100%;
     background-color: #ffffff;
+    width: 90%;
     border-radius: 5px;
     padding: 20px;
     padding-top: 40px;
@@ -453,16 +463,27 @@ color: #000;
     }
 
 
-.quiz_head_1{
+/* .quiz_head_1{
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: center;
+    color: #000;
+    
+} */
+.quiz_head_1 {
     width: 100%;
     /* height: 100%; */
     font-size: 40px;
     font-weight: bolder;
     text-align: center;
     color: #000;
-    
+    display: block;
+    /* position: relative; */
+    /* padding: 0px 10px; */
+    margin: 0px;
 }
-
 .options_quiz_teacher_1{
     /* align-items: left; */
     text-align: left;
@@ -477,15 +498,18 @@ color: #000;
     text-align: center;
     color: #000;
     display: inline-block;
+    /* position: relative; */
+
     
 }
 
 .quiz_1_attempt_btn{
     /* right: 10px; */
     font-size: 25px;
-    position: relative;
+    /* position: relative; */
     left: 25%;
     margin-top: 1.7%;
+    margin-bottom: 0%;
     cursor: pointer;
     display: inline-block;
     background: linear-gradient(to right ,#f43514 ,#ffad06);
@@ -554,32 +578,17 @@ color: #000;
   .form-box_add_ques{
     width: 85%;
     height: 460px;
-    /* top: -150%; */
     top: 18%;
     left: 8%;
-    /* transform: translate(-50%,50%); */
     position: absolute;
     opacity: 1;
     margin: 1% auto;
     background: #a7e0ff;
-    /* align-items: center; */
     background-image: linear-gradient(40deg , #a7e0ff 0% , #ffb5b5 100%);
     border-radius: 25px;
     padding: 5px;
-    /* display: none; */
-    /* display: block; */
-
-    /* transition: top 0ms ease-in-out 200ms,
-                opacity 200ms ease-in-out 0ms;  */
-    /* overflow: hidden;
-    /* z-index: 6; */
   }
-  
 
-/* .form-box_add_ques .active{
-    top: 18%;
-    opacity: 1;
-} */
 
 .form-box_add_ques .close_btn_add_ques{
     position: absolute;
@@ -618,10 +627,25 @@ color: #000;
     width: 90%;
     transition: .5s;
   }
-  
-  .input-field_add_ann{
+ 
+  .input-field_add_ann_title{
     width: 100%;
-    height: 250px;
+    height: 40px;
+    padding: 5px 0;
+    text-align: center;
+    margin: 5px 0;
+    border-left: 1px solid #6b6565;
+    border-top: 1px solid #6b6565;
+    border-right: 1px solid #6b6565;
+    border-bottom: 1px solid #6b6565;
+    outline: none;
+    border-radius: 20px;
+    background: transparent;
+  }  
+
+  .input-field_add_ann_desc{
+    width: 100%;
+    height: 40px;
     padding: 5px 0;
     text-align: center;
     margin: 5px 0;
@@ -633,6 +657,25 @@ color: #000;
     border-radius: 20px;
     background: transparent;
   }
+
+  .input-field_add_ann{
+    width: 100%;
+    height: 165px;
+    padding: 5px 0;
+    text-align: center;
+    margin: 5px 0;
+    border-left: 1px solid #6b6565;
+    border-top: 1px solid #6b6565;
+    border-right: 1px solid #6b6565;
+    border-bottom: 1px solid #6b6565;
+    outline: none;
+    border-radius: 20px;
+    background: transparent;
+  }
+
+
+
+
   .form-box_add_ann .submit-btn_add_ann{
     width: 40%;
     padding: 10px 30px;
@@ -740,6 +783,7 @@ color: #000;
     background-image: linear-gradient(40deg , #7eff8f 0% , #01c8ff 100%);
     border-radius: 25px;
     padding: 5px;
+    box-shadow: 2px 5px 7px ;
   }
   
 
@@ -853,7 +897,9 @@ color: #000;
 }
 
 .admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents p,
-.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents h3{
+.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents h3,
+.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents h4,
+.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents h5{
     color: #fff;
 
 }
@@ -872,8 +918,488 @@ color: #000;
 
 }
 
-.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents a{
+
+.admin_main_cards_container .performance_cards .performance_card_box .performance_card_contents .btn-dang{
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    background: #03a9f4;
+    margin-top: 15px;
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    box-shadow: 0px 10px 20px rgba(188, 175, 175, 0.2);
+    border: none;
+    outline: none;
+}
+
+.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents a,
+.admin_main_cards_container .performance_cards:hover .performance_card_box .performance_card_contents .btn-dang{
     background: #ff568f;
+    border: none;
+    outline: none;
 
 }
 /* Performance Cards (Admin Dashboard) CSS ends Here */
+
+
+
+/* Toggel Add New Quiz CSS starts Here */
+
+.popup_add_new_quiz .overlay_add_new_quiz{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup_add_new_quiz .content_add_new_quiz{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    background-image: linear-gradient(40deg , #a7e0ff 0% , #ffb5b5 100%);
+    border-radius: 25px;
+    padding: 5px;
+    width: 85%;
+    height: 460px;
+    justify-content: center;
+    opacity: 1;
+    margin: 1% auto;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.popup_add_new_quiz .close_btn_add_new_quiz{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.popup_add_new_quiz.active .overlay_add_new_quiz{
+    display: block;
+}
+
+
+.popup_add_new_quiz.active .content_add_new_quiz{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+
+
+.popup_add_new_quiz .submit-btn_add_new_quiz{
+    width: 40%;
+    padding: 10px 30px;
+    margin-left: 15%;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    background: linear-gradient(to right ,#f43514 ,#ffad06);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+
+/* Toggel Add New Quiz CSS ends Here */
+
+
+
+/* Toggle view Card CSS Starts Here */
+
+.popup_view_card .overlay_view_card{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+    transition: 0.01s;
+
+}
+
+.popup_view_card .content_view_card{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    background-image: linear-gradient(40deg , #0080c5 0% , #6b08a5 100%);
+    border-radius: 25px;
+    padding: 5px;
+    width: 85%;
+    height: 460px;
+    justify-content: center;
+    opacity: 1;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    transition: 0.01s;
+
+}
+
+.popup_view_card .close_btn_view_card{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.popup_view_card.active .overlay_view_card{
+    display: block;
+    transition: 0.5s;
+}
+
+
+.popup_view_card.active .content_view_card{
+    color: #ffffff;
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+    transition: 0.5s;
+
+}
+
+
+.popup_view_card.active .content_view_card p{
+    margin: 30px;
+}
+
+.popup_view_card.active .content_view_card h1{
+    margin-bottom: 30px;
+    margin-top: none;
+}
+
+.popup_view_card.active .content_view_card h3{
+    margin: 0px;
+}
+
+/* Toggle view Card CSS ends Here */
+
+/* Question Paper CSS starts Here */
+
+.main_container_ques_paper{
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-color: #d7ebfe;
+    background-position: center;
+    background-size:cover;
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main_container_ques_paper .ques_paper_quiz_title{
+    display: inline-block;
+    width: 85%;
+    margin: 0px;
+    padding: 10px;
+}
+.main_container_ques_paper .ques_paper_quiz_title h1{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+
+.main_container_ques_paper .ques_paper_quiz_timer{
+    display: inline-block;
+    width: 14%;
+    background-color: #e7e7e7;
+    border-radius: 15px;
+    border: #000;
+    padding: 10px;
+    border-bottom: 2px #000000 solid;
+    border-left: 2px #000000 solid;
+    border-top: 1px #000 solid;
+    border-right: 1px #000 solid;
+
+}
+
+.main_container_ques_paper .ques_paper_quiz_timer h1{
+    font-size: 15px;
+    color: rgb(145, 45, 45);
+    margin-bottom: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+.quiz_cards_1_question_paper{
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 90%;
+    padding: 20px;
+    padding-top: 40px;
+    margin: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0,0.3);
+    display: inline-block;
+}
+
+.quiz_cards_1_question_paper h3{
+    font-size: 35px;
+    padding: 5px 0;
+    color: #444;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.quiz_cards_1_question_paper p{
+    font-size: 15px;
+    color: #777;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.quiz_cards_1_question_paper button{
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(to right ,#f43514 ,#ffad06);
+    color: #000;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.quiz_cards_1_question_paper button:hover{
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.options_quiz_question_paper_1{
+    text-align: left;
+    margin-left: 0px;
+}
+
+
+.submit_btn_question_paper{
+    width: 200px;
+    height: 50px; 
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(40deg , #56ff94 0% , #4931ffe6 100%);
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+
+.submit_btn_question_paper:hover{
+    letter-spacing: 2px;
+    background-image: linear-gradient(40deg , #6efda2 0% , #6753fce6 100%);
+}
+
+/* Question Paper CSS ends Here */
+
+
+
+/* Score Page CSS starts here */
+
+.main_container_score{
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-color: #d7ebfe;
+    background-position: center;
+    background-size:cover;
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main_container_score .score_quiz_title{
+    display: inline-block;
+    width: 85%;
+    margin: 0px;
+    padding: 10px;
+}
+.main_container_score .score_quiz_title h1{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+.main_container_score .score_quiz_title h2{
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #ce0101;
+}
+
+
+.quiz_cards_1_score{
+    background-color: #ffffff;
+    width: 72%;
+    height: 285px;
+    border-radius: 150px;
+    padding: 20px;
+    padding-top: 40px;
+    margin: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    overflow: hidden;
+    background-image: linear-gradient(145deg, #ee6262 0%, #fefe00 100%);
+    position: relative;
+    z-index: 0;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0,0.3);
+    display: inline-block;
+}
+
+.quiz_cards_1_score h3{
+    font-size: 35px;
+    padding: 5px 0;
+    color: #444;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.quiz_cards_1_score p{
+    font-size: 15px;
+    color: #777;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.quiz_cards_1_score button{
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(to right ,#f43514 ,#ffad06);
+    color: #000;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.quiz_cards_1_score button:hover{
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.options_quiz_score_1{
+    text-align: left;
+    margin-left: 0px;
+}
+
+
+.submit_btn_score{
+    width: 200px;
+    height: 50px; 
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(40deg , #56ff94 0% , #4931ffe6 100%);
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+
+.submit_btn_score:hover{
+    letter-spacing: 2px;
+    background-image: linear-gradient(40deg , #6efda2 0% , #6753fce6 100%);
+}
+
+
+.score_card{
+    display: inline-block;
+    margin-left: 35px;
+    margin-right: 35px;
+    text-align: center;
+    justify-content: center;
+    background-image: linear-gradient(40deg , #56ff94 0% , #4931ffe6 100%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 5px 10px 15px #797878;
+}
+
+.score_card h1{
+    color: #fff;
+    text-shadow: 3px 5px 7px #000;
+    top: 68px;
+    position: relative;
+}
+
+
+/* Score Page CSS ends here */
+
+
+
+/* Contact Us Page CSS starts Here */
+
+
+.contact_us_container{
+    margin: 50px;
+}
+
+.contact_us_container .contact_us_box{
+    padding: 50px;
+    border-radius: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    background-image: linear-gradient(40deg, #bdfb2d 0%, #78ffe0 100%);
+    box-shadow: 5px 10px 15px #6260609a;
+}
+
+.contact_us_container .contact_us_box h1{
+    color:  #bc0000;
+}
+
+.contact_us_container .contact_us_box p{
+    font-weight: 650;
+    color: #2c2c2c;
+}
+
+/* Contact us Page CSS ends Here */

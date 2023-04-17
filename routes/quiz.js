@@ -8,40 +8,52 @@ router.get("/", (req, res) => {
   res.send("hi articles");
 });
 
-router.get("teacher/:slug/new", (req, res) => {
-  const user = homeschema.findOne({ slug: req.params.slug });
-  res.render("extra_pages/teacher_quiz_db", {
-    article: new Quiz(),
-    result: user,
-  });
-});
+// router.get("teacher/:slug/new", (req, res) => {
+//   const user = homeschema.findOne({ slug: req.params.slug });
+//   res.render("extra_pages/teacher_quiz_db", {
+//     article: new Quiz(),
+//     result: user,
+//   });
+// });
+
 
 router.get("/teacher/:te_slug/:slug", async (req, res) => {
   const article = await Quiz.findOne({ slug: req.params.slug });
-  const user = await homeschema.findOne({slug: req.params.te_slug})
+  const user = await homeschema.findOne({ slug: req.params.te_slug });
   if (article == null) {
     res.redirect("/");
   }
-  var quiz_status="Start Quiz"
-  if(article.Active==false){
-    quiz_status="Archived"
+  var quiz_status = "Start Quiz";
+  if (article.Active == false) {
+    quiz_status = "Unarchive";
+  } else if (article.Started) {
+    quiz_status = "End Quiz";
   }
-  else if(article.Started){
-    quiz_status="End Quiz"
-  }
-  res.render("extra_pages/teacher_quiz_db", { articles: article.quizDB ,slug: req.params.slug,te_slug:req.params.te_slug ,name:user.name,quiz_name:article.title,quiz_status: quiz_status});
+  res.render("extra_pages/teacher_quiz_db", {
+    articles: article.quizDB,
+    slug: req.params.slug,
+    te_slug: req.params.te_slug,
+    name: user.name,
+    quiz_name: article.title,
+    quiz_status: quiz_status,
+  });
 });
 
 router.get("/teacher/:te_slug/:slug/add", async (req, res) => {
   const article = await Quiz.findOne({ slug: req.params.slug });
-  const user = await homeschema.findOne({slug: req.params.te_slug})
+  const user = await homeschema.findOne({ slug: req.params.te_slug });
   if (article == null) {
     res.redirect("/");
   }
-  res.render("./extra_pages/add_quest", { article: article,te_slug: req.params.te_slug,slug: req.params.slug,name: user.name });
+  res.render("./extra_pages/add_quest", {
+    article: article,
+    te_slug: req.params.te_slug,
+    slug: req.params.slug,
+    name: user.name,
+  });
 });
 
-router.post('/teacher/:te_slug/:slug/add',async(req,res)=>{
+router.post("/teacher/:te_slug/:slug/add", async (req, res) => {
   let ques = {
     question: req.body.question,
     option1: req.body.option1,
@@ -63,7 +75,7 @@ router.post('/teacher/:te_slug/:slug/add',async(req,res)=>{
     console.log(e);
     res.redirect("/");
   }
-})
+});
 
 // router.get("/:slug/add", async (req, res) => {
 //   const article = await Quiz.findOne({ slug: req.params.slug });
@@ -96,28 +108,29 @@ router.post('/teacher/:te_slug/:slug/add',async(req,res)=>{
 //     console.log(e);
 //     res.redirect("/");
 //   }
-  // console.log(checkAnswer())
+// console.log(checkAnswer())
 // });
 
-// router.post("/", async (req, res) => {
-//   let article = new Quiz({
-//     title: req.body.title,
-//     description: req.body.description,
-//     markdown: req.body.markdown,
-//     createdBy: req.body.CreatedBy,
-//   });
-//   try {
-//     article = await article.save();
-//     res.redirect("/");
-//     {
-//       console.log("Saved");
-//     }
-//   } catch (e) {
-//     console.log(e);
+router.post("/teacher/:slug/new", async (req, res) => {
+  const user=await homeschema.findOne({slug:req.params.slug})
+  let article = new Quiz({
+    title: req.body.title,
+    description: req.body.description,
+    markdown: req.body.markdown,
+    createdBy: user.name
+  });
+  try {
+    article = await article.save();
+    res.redirect(`/teacher/${req.params.slug}`);
+    {
+      console.log("Saved");
+    }
+  } catch (e) {
+    console.log(e);
 
-//     res.render("quiz/new", { article: article });
-//   }
-// });
+    res.render("/", { article: article });
+  }
+});
 
 router.delete("/:id", async (req, res) => {
   await Quiz.findByIdAndDelete(req.params.id);
@@ -126,19 +139,101 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/:slug/:st_slug/attempt_quiz/:question_no", async (req, res) => {
   const quiz = await Quiz.findOne({ slug: req.params.slug });
+  if (quiz.Active == true && quiz.Started == false) {
+    console.log("quiz is not started yet");
+    res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/not/started`);
+  } 
+  
+  else if (quiz.Active == false) {
+    console.log("quiz is archived");
+    if (
+      quiz.students_scores.some(
+        element => element.student_slug == req.params.st_slug
+      )
+    ){
+      await store_score(req.params.slug,req.params.st_slug)
+    }
+    res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
+  } 
+  
+  else if (
+    quiz.students_scores.some(
+      element => element.student_slug == req.params.st_slug
+    ) && (quiz.students_scores.find(
+      (element) => element.student_slug == req.params.st_slug
+    ).attempted == 1)
+  ) {
+    // if (
+    //   quiz.students_scores.find(
+    //     (element) => element.student_slug == req.params.st_slug
+    //   ).attempted == 1
+    // ) {
+      console.log("You have attempted the quiz");
+      res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
+    // }
+  // else {
+  //   console.log("displaying question");
+  //   let checked_ans="none";
+  //   try{
+  //     checked_ans=quiz.students_scores.find(element=>element.student_slug==req.params.st_slug).answers[req.params.question_no]
+  //     console.log("checked_ans",checked_ans)
+  //   }
+  //   catch(e){
+  //     console.log("checked_ans",e)
+  //   }
+  //   let isLastQuestion=0;
+  //   if(req.params.question_no==quiz.quizDB.length-1){
+  //     isLastQuestion=1;
+  //   }
+  //   if (req.params.question_no >= quiz.quizDB.length) {
+  //     await store_score(req.params.slug, req.params.st_slug);
+  //     res.redirect(`/${req.params.st_slug}`);
+  //   } else {
+  //     const ques = quiz.quizDB[req.params.question_no];
+  //     // console.log(req.params.st_slug)
+  //     res.render("./extra_pages/question_paper", {
+  //       quiz_title: quiz.title,
+  //       ques: ques,
+  //       question_no: req.params.question_no,
+  //       slug: req.params.slug,
+  //       st_slug: req.params.st_slug,
+  //       isLastQuestion: isLastQuestion
+  //     });
+  //   }
+  // }
+}
+
+else {
+  // console.log("displaying question");
+  let checked_ans="none";
+  try{
+    checked_ans=quiz.students_scores.find(element=>element.student_slug==req.params.st_slug).answers[req.params.question_no]
+    console.log("checked_ans",checked_ans)
+  }
+  catch(e){
+    console.log("checked_ans",e)
+  }
+  let isLastQuestion=0;
+    if(req.params.question_no==quiz.quizDB.length-1){
+      isLastQuestion=1;
+    }
   if (req.params.question_no >= quiz.quizDB.length) {
-    store_score(req.params.slug, req.params.st_slug);
-    res.redirect(`/${req.params.st_slug}`);
+    await store_score(req.params.slug, req.params.st_slug);
+    res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
   } else {
     const ques = quiz.quizDB[req.params.question_no];
     // console.log(req.params.st_slug)
-    res.render("attempt_quiz/show", {
+    res.render("./extra_pages/question_paper", {
+      quiz_title: quiz.title,
       ques: ques,
       question_no: req.params.question_no,
       slug: req.params.slug,
       st_slug: req.params.st_slug,
+      isLastQuestion: isLastQuestion,
+      checked_ans:checked_ans
     });
   }
+}
 });
 
 router.get("/:slug/attempt_quiz", async (req, res) => {
@@ -147,17 +242,37 @@ router.get("/:slug/attempt_quiz", async (req, res) => {
 });
 
 router.post("/:slug/:st_slug/attempt_quiz/:question_no", async (req, res) => {
-  store_answer(
+  console.log('storing answer')
+  await store_answer(
     req.params.slug,
     req.params.st_slug,
     req.params.question_no,
     req.body.answer
   );
-  res.redirect(
+
+  if(req.body.vote=="next"){
+    res.redirect(
     `/quiz/${req.params.slug}/${req.params.st_slug}/attempt_quiz/${
       Number(req.params.question_no) + 1
     }`
   );
+  }
+  else if(req.body.vote=="prev"){
+    res.redirect(
+    `/quiz/${req.params.slug}/${req.params.st_slug}/attempt_quiz/${
+      Number(req.params.question_no) - 1
+    }`
+  );
+  }
+  else if(req.body.vote=="submit"){
+    await store_score(req.params.slug, req.params.st_slug);
+    res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
+  }
+  // res.redirect(
+  //   `/quiz/${req.params.slug}/${req.params.st_slug}/attempt_quiz/${
+  //     Number(req.params.question_no) + 1
+  //   }`
+  // );
 });
 
 async function store_answer(slug, st_slug, question_no, checked_answer) {
@@ -177,12 +292,16 @@ async function store_answer(slug, st_slug, question_no, checked_answer) {
       answers: answer_arr,
       attempted: 0,
       score: 0,
+      correct:-1,
+      incorrect:-1,
+      not_attempted: -1,
     };
     try {
       await Quiz.findOneAndUpdate(
         { slug: slug },
         { $push: { students_scores: new_student_score } }
       );
+      console.log('answer saved')
     } catch (e) {
       console.log(e);
     }
@@ -196,6 +315,7 @@ async function store_answer(slug, st_slug, question_no, checked_answer) {
       { slug: slug },
       { students_scores: students_scores }
     );
+    console.log('answer saved')
   }
 }
 
@@ -204,16 +324,19 @@ router.post("/:slug/:st_slug/submit_quiz", async (req, res) => {
   res.redirect(`/${req.params.st_slug}`);
 });
 
-function calculate_score(answers, quizDB) {
+async function calculate_score(answers, quizDB) {
   var score = 0;
+  var correct = 0;
+  var incorrect = 0;
   for (let i = 0; i < answers.length; i++) {
     if (answers[i] == quizDB[i].correctAns) {
-      score += 4;
-    } else if (answers[i] != "0") {
-      score -= 1;
+      score += 4;correct++;
+    } else if (answers[i] != "0" && answers[i]!=null) {
+      score -= 1;incorrect++;
     }
   }
-  return score;
+  var skipped=quizDB.length-correct-incorrect;
+  return [score,correct,incorrect,skipped];
 }
 
 async function store_score(slug, st_slug) {
@@ -224,7 +347,7 @@ async function store_score(slug, st_slug) {
 
   var students_scores = quiz.students_scores;
   var student_index = students_scores.findIndex(check_student_slug);
-  students_scores[student_index].score = calculate_score(
+  [students_scores[student_index].score,students_scores[student_index].correct,students_scores[student_index].incorrect,students_scores[student_index].not_attempted] = await calculate_score(
     students_scores[student_index].answers,
     quiz.quizDB
   );
@@ -235,15 +358,46 @@ async function store_score(slug, st_slug) {
   );
 }
 
-router.post("/teacher/:te_slug/:slug/start",async(req,res)=>{
-  var quiz= await Quiz.findOne({slug:req.params.slug})
-  if(quiz.Active==true && quiz.Started==false){
-    quiz.Started=true
+router.post("/teacher/:te_slug/:slug/start", async (req, res) => {
+  console.log("entered");
+  var quiz = await Quiz.findOne({ slug: req.params.slug });
+  if (quiz.Active == true && quiz.Started == false) {
+    await Quiz.findOneAndUpdate({ slug: req.params.slug }, { Started: true });
+  } else if (quiz.Active == true) {
+    await Quiz.findOneAndUpdate(
+      { slug: req.params.slug },
+      { Active: false, Started: false }
+    );
+  } else {
+    await Quiz.findOneAndUpdate(
+      { slug: req.params.slug },
+      { Active: true, Started: false }
+    );
+    await Quiz.findOneAndUpdate(
+      { slug: req.params.slug },
+      { $unset: { students_scores: 1 } }
+    );
   }
-  else if(quiz.Active==true){
-    quiz.Started=false
-    quiz.Active=false
-  }
-  res.redirect(`/teacher/${req.params.te_slug}/${req.params.slug}`)
+  res.redirect(`/quiz/teacher/${req.params.te_slug}/${req.params.slug}`);
+});
+
+router.get("/:slug/:st_slug/score",async(req,res)=>{
+  const quiz=await Quiz.findOne({slug:req.params.slug})
+  const student=await homeschema.findOne({slug:req.params.st_slug})
+  const st_performance=quiz.students_scores.find(function(element){return element.student_slug==req.params.st_slug})
+  var total_score=Number(quiz.quizDB.length)*4
+  res.render("./extra_pages/Score_page",{score:st_performance.score,correct:st_performance.correct,incorrect:st_performance.incorrect,not_attempted:st_performance.not_attempted,
+  total_score:total_score,
+  st_slug:req.params.st_slug,
+  name:student.name,
+  quiz_name:quiz.title
+
+  
+  
+  })
+})
+
+router.get("/:slug/:st_slug/not/started",(req,res)=>{
+  res.render('./extra_pages/QUiz_status',{slug:req.params.slug,st_slug: req.params.st_slug})
 })
 module.exports = router;

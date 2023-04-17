@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Wisdom Classes </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/css_file.css">
+    <!-- <link rel="shortcut icon" href="images/wisdom.logo.jpeg" type="image/png"> -->
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="shortcut icon" href="./images/wisdom.logo.jpeg" type="image/png">
+
+    <script>
+        function togglepopup(){
+            document.getElementById("popup_1_add_new_quiz").classList.toggle("active")
+            }
+
+        function toggle_card(i){
+            console.log('toggle')
+            document.getElementById("popup_1_view_card").classList.toggle("active")
+            console.log('hi')
+            document.getElementById("heading_popup").innerHTML=document.getElementById("heading"+i).innerHTML
+            document.getElementById("description_popup").innerHTML=document.getElementById("description"+i).innerHTML
+            }
+
+        function toggle_card_close(){
+            document.getElementById("popup_1_view_card").classList.toggle("active")
+        }
+    </script>
+</head>
+
+<body>
+	<section id="navbar">
+		<nav class="navbar navbar-expand-lg py-3 navbar-dark  shadow-sm">
+			<div class="container">
+				<a href="#" class="navbar-brand">
+					<img src="ims/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
+					<span class="text-uppercase font-weight-bold">WISDOM CLASSES</span>
+				</a>
+
+				<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+					class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+				<div id="navbarSupportedContent" class="collapse navbar-collapse">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item "><a href="#" class="nav-link">Home <span
+									class="sr-only">(current)</span></a></li>
+						<li onclick="togglepopup()" class="nav-item"><a href="#" class="nav-link">New Quiz</a></li>
+						<li class="nav-item"><a href="/new_announcement.html" id="downloads-btn" class="nav-link">New Announcement</a></li>
+						<li class="nav-item active"><a href="#" id="contact-us-btn" class="nav-link">Teacher's Name</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</section>
+
+    <div class = "hero_teacher">
+        <div class="ann_head">Announcements</div>
+        <div class="announcement_cards" onclick="toggle_card(1)" >
+            <h3 id="heading1"> Card 1 </h3>
+            <p id="description1">Description1
+            </p>
+            <a href="#"><button onclick="toggle_card(1)">Click Here</button></a>
+            <span class="count_ann">1</span>
+        </div>
+
+        <div class="announcement_cards" onclick="toggle_card(2)">
+            <h3 id="heading2"> Card 2 </h3>
+            <p id="description2">Description2
+            </p>
+            <a href="#"><button onclick="toggle_card(2)">Click Here</button></a>
+            <span class="count_ann">2</span>
+        </div>
+
+        <div class="announcement_cards" onclick="toggle_card(3)" >
+            <h3 id="heading3"> Card 3 </h3>
+            <p id="description3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+            </p>
+            <a href="#"><button onclick="toggle_card(3)" >Click Here</button></a>
+            <span class="count_ann">3</span>
+        </div>
+
+    </div>
+
+
+
+    <div class = "quiz_teacher">
+        <div class="quiz_head">Quizzes</div>
+        <div class="quiz_cards">
+            <h3> Quiz 1 </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+            </p>
+            <a href="/teacher_quiz_db.html"><button>Click Here</button></a>
+            <span class="count_quiz">1</span>
+        </div>
+
+        <div class="quiz_cards">
+            <h3> Quiz 2 </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+            </p>
+            <a href="#"><button>Click Here</button></a>
+            <span class="count_quiz">2</span>
+        </div>
+
+        <div class="quiz_cards">
+            <h3> Quiz 3 </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+            </p>
+            <a href="#"><button>Click Here</button></a>
+            <span class="count_quiz">3</span>
+        </div>
+    </div>
+
+
+    <div class="popup_add_new_quiz" id="popup_1_add_new_quiz">
+        <div class="overlay_add_new_quiz"></div>
+        <div class="content_add_new_quiz">
+            <div class="close_btn_add_new_quiz" onclick="togglepopup()">&times;</div>
+            <h1>Create New Quiz</h1>
+            <form  action= "/announcementup" method="post" id="annup"class = "input-group_add_ann">
+                <textarea name="title" class = "input-field_add_ann_title" cols="30" rows="30" placeholder="Add Title" ></textarea>
+                <textarea name="desc" class = "input-field_add_ann_desc" cols="30" rows="30" placeholder="Add Description" ></textarea>
+                <textarea name="question" class = "input-field_add_ann" cols="30" rows="30" placeholder="Add Instructions" ></textarea>
+                <button type="submit" class = "submit-btn_add_new_quiz">Publish as ( Teacher Name )</button>
+            </form>
+        </div>
+    </div>
+
+
+
+<!-- Toggle Card popup -->
+
+    <div class="popup_view_card" id="popup_1_view_card">
+        <div class="overlay_view_card"  onclick="toggle_card_close()"></div>
+        <div class="content_view_card">
+            <div class="close_btn_view_card" onclick="toggle_card_close()">&times;</div>
+            <!-- <h1>Create New Quiz</h1> -->
+            <h1 id="heading_popup">Card Title</h1>
+            <h3>Card Description</h3>
+            <p id="description_popup">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos tenetur nihil possimus deleniti ab inventore eaque vitae at in eum delectus optio pariatur cum, repudiandae laboriosam officia consequatur explicabo soluta impedit ipsam repellat, aliquid nobis? Consequatur rem vero consectetur.  
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

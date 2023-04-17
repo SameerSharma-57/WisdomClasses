@@ -10,6 +10,14 @@ Router.get('/ind',(req,res) =>{
 Router.get('',(req,res)=>{
     res.render('./main_pages/main.hbs',{title : "tarun raj singh", name: "jai ho", password: 'jaiho jaiho', email: ''})
 })
+
+Router.get('/faq',(req,res)=>{
+    res.render('./extra_pages/FAQ_page')
+})
+
+Router.get('/contact',(req,res)=>{
+    res.render('./extra_pages/Contact_us_page')
+})
 // Router.get('/admin',(req,res)=>{
 //     res.render('./extra_pages/Admin_DashBoard')
 // })
@@ -19,11 +27,14 @@ Router.get('/:slug',async(req,res)=>{
         
         
         const result=await homeschema.findOne({slug:req.params.slug})
+        
         if(result){
             
-            const quizes=await Quiz.find().sort({createdAt: 'desc'})
+            const quizes=await Quiz.find({Active:true,Started:true}).sort({createdAt: 'desc'})
+            const articles=await Article.find().sort({createdAt:'desc'})
 
-            res.render('./main_pages/dashboard1',{name:result.name , result : result,quizes:quizes})
+            const archived_quizes=await Quiz.find({Active:false})
+            res.render('./main_pages/dashboard1',{name:result.name , result : result,quizes:quizes,archived_quizes:archived_quizes,articles:articles })
         }
     }
 })
@@ -39,7 +50,8 @@ Router.get('/teacher/:slug',async(req,res)=>{
         
         const result=await homeschema.findOne({slug:req.params.slug})
         if(result){
-            const articles=await Article.find().sort({createdAt: 'desc'})
+            // const articles=await Article.find().sort({createdAt: 'desc'})
+            const articles=await Article.find({$or:[{createdBy:result.name},{createdBy:"admin"}]})
              const quizes=await Quiz.find().sort({createdAt: 'desc'})
 
             res.render('./extra_pages/teacher_dashboard',{articles: articles , result : result,quizes:quizes})
@@ -50,6 +62,10 @@ Router.get('/teacher/:slug',async(req,res)=>{
 Router.get('/teacher/:slug/home',async(req,res)=>{
     res.render('./main_pages/home_teacher.hbs',{slug:req.params.slug})
 })
+
+// Router.get('/teacher/dashboard_2/sameer/tarun/hehe',(req,res)=>{
+//     res.render('./extra_pages/teacher_dashboard_2')
+// })
 
 // Router.get('/download',(req,res)=>{
 //     res.render('view')
@@ -169,7 +185,8 @@ Router.post('/login',async(req,res)=>{
                 else if (role == result.role && role == "student")
                     {
                         
-                        res.render('./main_pages/dashboard1',{name : result.name , result : result,quizes:quizes})
+                        // res.render('./main_pages/dashboard1',{name : result.name , result : result,quizes:quizes})
+                        res.redirect(`/${result.slug}`)
                         // res.redirect("/")
                     }
                     else{

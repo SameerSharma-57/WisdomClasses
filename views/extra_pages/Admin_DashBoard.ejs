@@ -8,8 +8,28 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/css/css_file.css">
+	<link rel="shortcut icon" href="/images/wisdom.logo.jpeg" type="image/png">
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+		<script>
+            function togglepopup(){
+                document.getElementById("popup_1_add_new_quiz").classList.toggle("active")
+                }
+    
+                function toggle_card(i){
+            console.log('toggle')
+            document.getElementById("popup_1_view_card").classList.toggle("active")
+            console.log('hi')
+            document.getElementById("heading_popup").innerHTML=document.getElementById("heading"+i).innerHTML
+            document.getElementById("description_popup").innerHTML=document.getElementById("description"+i).innerHTML
+            document.getElementById("markdown_popup").innerHTML=document.getElementById("markdown"+i).innerHTML
+            }
+
+        function toggle_card_close(){
+            document.getElementById("popup_1_view_card").classList.toggle("active")
+        }
+        </script>
 </head>
 
 <body>
@@ -17,7 +37,7 @@
 		<nav class="navbar navbar-expand-lg py-3 navbar-dark  shadow-sm">
 			<div class="container">
 				<a href="#" class="navbar-brand">
-					<img src="ims/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
+					<img src="/images/wisdom.logo.jpeg" width="70" alt="" class="d-inline-block align-middle mr-2">
 					<span class="text-uppercase font-weight-bold">WISDOM CLASSES</span>
 				</a>
 
@@ -42,15 +62,42 @@
 
 
 	<div class = "admin_main_cards_container">
-        <!-- <div class="ann_head">Performances</div> -->
-        <!-- <div class="performance_cards">
+        
+		<h1 class="ann_head">Announcements</h1>
+		<% let i=1 %>
+        <% articles.forEach(element => {%>
+            <div class="performance_cards" onclick=toggle_card(<%= i %>)>
+				<div class="performance_card_box">
+					<div class="performance_card_contents">
+						<h2><%=i  %></h2>
+						<h3 id="heading<%=i  %>"><%=element.title  %></h3>
+						<p id="description<%=i  %>"><%=element.description  %>
+						</p>
+						<hr>
+						<p style="display: none;" id="markdown<%= i %>"><%=element.markdown  %></p>
+						<h5 id="createdBy<%=i  %>"> posted by ( <%=element.createdBy  %> )</h5>
+						<p> on 10/10/2000</p>
+						<a href="#">Click Here</a>
+						<form action="/admin/<%=element.id %>?_method=DELETE" method="post" class="d-inline">
+							<button type="submit" class="btn-dang">Delete	</button>
+						</form>
+					</div>
+				</div>
+			</div>
+            <% i=i+1 %>
+
+
+        <%}); %>
+		<div class="ann_head">Statistics</div>
+        <div class="performance_cards">
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
 					<h2>01</h2>
-					<h3> Card 1 </h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+					<h3> Number of Students registered </h3>
+					<p style="font-size: 5em;">
+						<%=no_students  %>
 					</p>
-					<a href="#">Click Here</a>
+					<!-- <a href="#">Click Here</a> -->
 				</div>
 			</div>
         </div>
@@ -59,10 +106,10 @@
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
 					<h2>02</h2>
-					<h3> Card 2 </h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+					<h3> Number of teachers registered </h3>
+					<p style="font-size: 5em;"><%=no_teachers  %>
 					</p>
-					<a href="#">Click Here</a>
+					<!-- <a href="#">Click Here</a> -->
 				</div>
 			</div>
         </div>
@@ -71,34 +118,29 @@
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
 					<h2>03</h2>
-					<h3> Card 3 </h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate aliquid? Officiis animi suscipit labore voluptates ullam, voluptatem qui laudantium nisi consequatur, maxime esse expedita accusamus ducimus. Error, odit voluptate?
+					<h3> Number of Active Quizzes </h3>
+					<p style="font-size: 5em;">
+						<%=no_quiz  %>
 					</p>
-					<a href="#">Click Here</a>
+					<!-- <a href="#">Click Here</a> -->
 				</div>
 			</div>
-        </div>-->
-		<% let i=1 %>
-        <% articles.forEach(element => {%>
-            <div class="performance_cards">
-				<div class="performance_card_box">
-					<div class="performance_card_contents">
-						<h2><%=i  %></h2>
-						<h3><%=element.title  %></h3>
-						<p><%=element.description  %>
-						</p>
-						<hr>
-						<p><%=element.markdown  %></p>
-						<a href="#">Click Here</a>
-					</div>
-				</div>
-			</div>
-            <% i=i+1 %>
-
-
-        <%}); %>
+        </div>
 
     </div> 
+
+	<div class="popup_view_card" id="popup_1_view_card">
+        <div class="overlay_view_card"  onclick="toggle_card_close()"></div>
+        <div class="content_view_card">
+            <div class="close_btn_view_card" onclick="toggle_card_close()">&times;</div>
+            <!-- <h1>Create New Quiz</h1> -->
+            <h1 id="heading_popup">Card Title</h1>
+            <h3 id="description_popup">Card Description</h3>
+            <p id="markdown_popup">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos tenetur nihil possimus deleniti ab inventore eaque vitae at in eum delectus optio pariatur cum, repudiandae laboriosam officia consequatur explicabo soluta impedit ipsam repellat, aliquid nobis? Consequatur rem vero consectetur.  
+            </p>
+            
+        </div>
+    </div>
 </body>
 
 </html>

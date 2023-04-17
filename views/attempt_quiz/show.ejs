@@ -71,7 +71,10 @@
                 
     
     
-                    <button id="submit">Next</button>
+                    <button id="submit" name="vote" value="next">Next</button>
+                    <% if(question_no>0){ %>
+                    <button type="submit" name="vote" value="prev">Previous</button>
+                    <% } %>
                 
             </form>
             
