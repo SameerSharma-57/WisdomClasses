@@ -53,6 +53,14 @@ router.get("/teacher/:te_slug/:slug/add", async (req, res) => {
   });
 });
 
+router.get("/teacher/:te_slug/:slug/leaderboard",async(req,res)=>{
+  const quiz=await Quiz.findOne({slug:req.params.slug})
+  const student_scores=quiz.students_scores.sort(function(a,b){return b.score-a.score})
+  const total_score=Number(quiz.quizDB.length)*4
+  const teacher=await homeschema.findOne({slug:req.params.te_slug})
+  res.render("./extra_pages/leaderboard",{total_score:total_score, student_scores:student_scores,name:quiz.title,teacher_name:teacher.name})
+})
+
 router.post("/teacher/:te_slug/:slug/add", async (req, res) => {
   let ques = {
     question: req.body.question,

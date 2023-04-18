@@ -28,6 +28,9 @@
 
         function toggle_card_close(){
             document.getElementById("popup_1_view_card").classList.toggle("active")
+
+
+		
         }
         </script>
 </head>
@@ -52,6 +55,7 @@
 						<li class="nav-item"><a href="/admin/createTeacher" class="nav-link">Create Teacher Account</a></li>
 						<li class="nav-item"><a href="/admin/new_announcement" id="downloads-btn" class="nav-link">New Announcement</a></li>
 						<li class="nav-item active"><a href="#" id="contact-us-btn" class="nav-link">Admin</a></li>
+						<li class="nav-item "><a href="/ind" id="contact-us-btn" class="nav-link">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -76,7 +80,7 @@
 						<hr>
 						<p style="display: none;" id="markdown<%= i %>"><%=element.markdown  %></p>
 						<h5 id="createdBy<%=i  %>"> posted by ( <%=element.createdBy  %> )</h5>
-						<p> on 10/10/2000</p>
+						<p> on <%=element.createdAt.toLocaleDateString()  %></p>
 						<a href="#">Click Here</a>
 						<form action="/admin/<%=element.id %>?_method=DELETE" method="post" class="d-inline">
 							<button type="submit" class="btn-dang">Delete	</button>
@@ -89,6 +93,7 @@
 
         <%}); %>
 		<div class="ann_head">Statistics</div>
+		<a href="/admin/studentInfo">
         <div class="performance_cards">
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
@@ -101,7 +106,8 @@
 				</div>
 			</div>
         </div>
-
+	</a>
+		<a href="/admin/teacherInfo">
         <div class="performance_cards">
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
@@ -113,12 +119,14 @@
 				</div>
 			</div>
         </div>
+	</a>
 
-        <div class="performance_cards">
+        <a href="/admin/quizInfo">
+			<div class="performance_cards">
 			<div class="performance_card_box">
 				<div class="performance_card_contents">
 					<h2>03</h2>
-					<h3> Number of Active Quizzes </h3>
+					<h3> Number of Registered Quizzes </h3>
 					<p style="font-size: 5em;">
 						<%=no_quiz  %>
 					</p>
@@ -126,6 +134,7 @@
 				</div>
 			</div>
         </div>
+	</a>
 
     </div> 
 

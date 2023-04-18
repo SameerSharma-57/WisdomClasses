@@ -97,4 +97,27 @@ Router.delete('/:id',async (req,res)=>{
     await Article.findByIdAndDelete(req.params.id)
     res.redirect('/admin/dashboard')
 })  
+
+Router.get('/faq',(req,res)=>{
+    res.render('./extra_pages/FAQ_page_admin')
+})
+
+Router.get('/contactUs',(req,res)=>{
+    res.render('./extra_pages/Contact_us_page_admin')
+})
+
+Router.get('/studentInfo',async(req,res)=>{
+    students=await homeschema.find({role:'student'})
+    res.render('./extra_pages/studentInfoPage',{students:students})
+})
+
+Router.get('/teacherInfo',async(req,res)=>{
+    teachers=await homeschema.find({role:'teacher'})
+    res.render('./extra_pages/teacherInfoPage')
+})
+
+Router.get('/quizInfo',async(req,res)=>{
+    quizes=await Quiz.find()
+    res.render('./extra_pages/quizInfoPage',{quizes:quizes})
+})
 module.exports = Router;

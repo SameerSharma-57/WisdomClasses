@@ -55,6 +55,7 @@
 						<li onclick="togglepopup()" class="nav-item"><a href="#" class="nav-link">New Quiz</a></li>
 						<li class="nav-item"><a href="/articles/<%=result.slug  %>/new" id="downloads-btn" class="nav-link">New Announcement</a></li>
 						<li class="nav-item active"><a href="#" id="contact-us-btn" class="nav-link"><%=result.name  %></a></li>
+                        <li class="nav-item "><a href="/ind" id="contact-us-btn" class="nav-link">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,12 +69,16 @@
         <% let i=1 %>
         <% articles.forEach(element => {%>
             
-            <div class="announcement_cards" onclick=toggle_card(<%= i %>)>
+            <div class="announcement_cards" >
                 <h3 id="heading<%=i  %>"> <%=element.title  %></h3>
                 <p id="description<%=i  %>"><%= element.description  %>
                 </p>
 
                 <p style="display: none;" id="markdown<%= i %>"><%=element.markdown  %></p>
+                <button class="mb-2" onclick=toggle_card(<%= i %>)>Open</button>
+                <form action="/teacher/<%=result.slug  %>/<%=element.id  %>/announcement_delete?_method=DELETE" method="post">
+                <button>Delete</button>
+            </form>
                 <span class="count_ann"><%=i  %></span>
             </div>
             <% i=i+1 %>

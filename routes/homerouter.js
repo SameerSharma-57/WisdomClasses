@@ -39,7 +39,7 @@ Router.get('/:slug',async(req,res)=>{
     }
 })
 
-Router.get('/:slug/home',(req,res)=>{
+Router.get('/student/:slug/home',(req,res)=>{
     res.render('./main_pages/home.hbs',{slug:req.params.slug})
 })
 
@@ -51,10 +51,11 @@ Router.get('/teacher/:slug',async(req,res)=>{
         const result=await homeschema.findOne({slug:req.params.slug})
         if(result){
             // const articles=await Article.find().sort({createdAt: 'desc'})
-            const articles=await Article.find({$or:[{createdBy:result.name},{createdBy:"admin"}]})
+            const articles=await Article.find({createdBy:result.name})
+            const admin_articles=await Article.find({createdBy:'admin'})
              const quizes=await Quiz.find().sort({createdAt: 'desc'})
 
-            res.render('./extra_pages/teacher_dashboard',{articles: articles , result : result,quizes:quizes})
+            res.render('./extra_pages/teacher_dashboard',{articles: articles , result : result,quizes:quizes,admin_articles: admin_articles})
         }
     }
 })
@@ -228,6 +229,27 @@ Router.post('/login',async(req,res)=>{
     // //     res.render('logreg',{title : "tarun raj singh", name: "jai ho", password: '', email: ''})
     // //     console.log("error caught")
     // // }
+})
+
+Router.delete("/teacher/:te_slug/:id/announcement_delete",async(req,res)=>{
+    await Article.findByIdAndDelete(req.params.id)
+    res.redirect(`/teacher/${req.params.te_slug}`)
+})
+
+Router.get("/teacher/:slug/contact",(req,res)=>{
+    res.render("./extra_pages/Contact_us_page_teacher",{slug:req.params.slug})
+})
+
+Router.get("/teacher/:slug/faq",(req,res)=>{
+    res.render("./extra_pages/FAQ_page_teacher",{slug:req.params.slug})
+})
+
+Router.get("/student/:slug/contact",(req,res)=>{
+    res.render("./extra_pages/Contact_us_page_student",{slug:req.params.slug})
+})
+
+Router.get("/student/:slug/faq",(req,res)=>{
+    res.render("./extra_pages/FAQ_page_student",{slug:req.params.slug})
 })
 
 
