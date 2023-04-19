@@ -53,7 +53,7 @@ Router.get('/teacher/:slug',async(req,res)=>{
             // const articles=await Article.find().sort({createdAt: 'desc'})
             const articles=await Article.find({createdBy:result.name})
             const admin_articles=await Article.find({createdBy:'admin'})
-             const quizes=await Quiz.find().sort({createdAt: 'desc'})
+             const quizes=await Quiz.find({createdBy:result.name}).sort({createdAt: 'desc'})
 
             res.render('./extra_pages/teacher_dashboard',{articles: articles , result : result,quizes:quizes,admin_articles: admin_articles})
         }

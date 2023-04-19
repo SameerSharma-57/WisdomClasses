@@ -117,7 +117,7 @@
 
 				<h5 id="createdBy<%=i  %>"> posted by ( <%=element.createdBy  %> )</h5>
                 <span class="count_ann"><%=i  %></span>
-				<p> on 10/10/2000</p>
+				<p> on <%=element.createdAt.toLocaleDateString()  %></p>
             </div>
             <% i=i+1 %>
 
@@ -142,7 +142,7 @@
 								<span class="overlay-results"></span>
 		
 								<div class="card-image-results">
-									<img src="images/wisdom.logo.jpeg" alt="" class="card-img-results">
+									<img src="/images/wisdom.logo.jpeg" alt="" class="card-img-results">
 								</div>
 							</div>
 							<div class="card-content-results">

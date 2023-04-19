@@ -6,7 +6,7 @@ const Quiz = require('../models/quiz')
 
 Router.get('/dashboard',async(req,res) =>{
     const articles=await Article.find().sort({createdAt: 'desc'})
-    const quizzes=await Quiz.find({Active:true})
+    const quizzes=await Quiz.find()
     const students=await homeschema.find({role:'student'})
     const teachers=await homeschema.find({role:'teacher'
     })

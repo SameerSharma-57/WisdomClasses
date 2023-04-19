@@ -156,12 +156,20 @@ router.get("/:slug/:st_slug/attempt_quiz/:question_no", async (req, res) => {
     console.log("quiz is archived");
     if (
       quiz.students_scores.some(
-        element => element.student_slug == req.params.st_slug
+        element => element.student_slug == req.params.st_slug && element.attempted==0
       )
     ){
+      console.log('calculating score')
       await store_score(req.params.slug,req.params.st_slug)
+      res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
     }
+
+    if(quiz.students_scores.some(element=>element.student_slug==req.params.st_slug))
     res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
+
+    else{
+      res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/not_attempted`)
+    }
   } 
   
   else if (
@@ -230,6 +238,7 @@ else {
     res.redirect(`/quiz/${req.params.slug}/${req.params.st_slug}/score`);
   } else {
     const ques = quiz.quizDB[req.params.question_no];
+    const student=await homeschema.findOne({slug:req.params.st_slug})
     // console.log(req.params.st_slug)
     res.render("./extra_pages/question_paper", {
       quiz_title: quiz.title,
@@ -238,7 +247,8 @@ else {
       slug: req.params.slug,
       st_slug: req.params.st_slug,
       isLastQuestion: isLastQuestion,
-      checked_ans:checked_ans
+      checked_ans:checked_ans,
+      student_name:student.name
     });
   }
 }
@@ -407,5 +417,18 @@ router.get("/:slug/:st_slug/score",async(req,res)=>{
 
 router.get("/:slug/:st_slug/not/started",(req,res)=>{
   res.render('./extra_pages/QUiz_status',{slug:req.params.slug,st_slug: req.params.st_slug})
+})
+
+router.delete("/teacher/:te_slug/:slug/:question_no",async(req,res)=>{
+  var quizDB=await Quiz.findOne({slug:req.params.slug})
+  quizDB=quizDB.quizDB
+  quizDB.splice(Number(req.params.question_no),1)
+  await Quiz.findOneAndUpdate({slug:req.params.slug},{quizDB:quizDB})
+  res.redirect(`/quiz/teacher/${req.params.te_slug}/${req.params.slug}`)
+})
+
+router.get("/:slug/:st_slug/not_attempted",async(req,res)=>{
+  student=await homeschema.findOne({slug:req.params.st_slug})
+  res.render('./extra_pages/Quiz_status',{st_slug:req.params.st_slug,name:student.name})
 })
 module.exports = router;

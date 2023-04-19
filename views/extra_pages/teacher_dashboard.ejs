@@ -75,6 +75,7 @@
                 </p>
 
                 <p style="display: none;" id="markdown<%= i %>"><%=element.markdown  %></p>
+                <p> <%=element.createdAt.toLocaleDateString()  %></p>
                 <button class="mb-2" onclick=toggle_card(<%= i %>)>Open</button>
                 <form action="/teacher/<%=result.slug  %>/<%=element.id  %>/announcement_delete?_method=DELETE" method="post">
                 <button>Delete</button>

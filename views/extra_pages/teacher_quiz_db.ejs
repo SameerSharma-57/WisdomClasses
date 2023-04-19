@@ -125,6 +125,9 @@
                     <li>Option 3 :<%=element.option3 %> </li>
                     <li>Option 4 :<%=element.option4 %> </li>
                     <li>Correct Answer :<%=element.correctAns %> </li>
+                    <form action="./<%=slug %>/<%=(i-1)  %>?_method=DELETE" method="post">
+                        <button type="submit" class="mt-2">Delete</button>
+                    </form>
                 </ul>
                 <!-- <a href="#"><button>Click Here</button></a> -->
                 
