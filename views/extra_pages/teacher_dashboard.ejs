@@ -124,6 +124,9 @@
                 </p>
                 <a href="/quiz/teacher/<%=result.slug  %>/<%=element.slug  %>"><button>Click Here</button></a>
                 <span class="count_ann"><%=i  %></span>
+                <form action="/quiz/<%=result.slug  %>/<%=element.id %>?_method=DELETE" method="post">
+                    <button class="mt-2">Delete</button>
+                </form>
             </div>
             <% i=i+1 %>
 

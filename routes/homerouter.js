@@ -204,7 +204,7 @@ Router.post('/login',async(req,res)=>{
         }
     })
     .catch((err)=>{
-        res.render('./main_pages/logreg.hbs',{title : "tarun raj singh", name: "jai ho", password: '', email: ''})
+        res.render('./main_pages/logreg.hbs',{title : "tarun raj singh", name: "jai ho", password: 'User does not exist', email: ''})
     })
     // ,(err,result)=>{
     //     // console.log(result);

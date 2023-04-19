@@ -140,9 +140,9 @@ router.post("/teacher/:slug/new", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:te_slug/:id", async (req, res) => {
   await Quiz.findByIdAndDelete(req.params.id);
-  res.redirect("/articles");
+  res.redirect(`/teacher/${req.params.te_slug}`);
 });
 
 router.get("/:slug/:st_slug/attempt_quiz/:question_no", async (req, res) => {
